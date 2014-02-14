@@ -5,29 +5,48 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="dist/ng-accordion-menu.css" media="all" />
     <style type='text/css'>
-      body{font-family:'Helvetica Neue',Helvetica,sans-serif}
+      body{
+        font-family:'Helvetica Neue',Helvetica,sans-serif;
+        width: 1000px;
+        margin: 0 auto;
+      }
+      a, a:visited {
+        color: blue;
+      }
+      nav {
+        float: left;
+        width: 200px;
+        margin-right: 10px;
+      }
+      .content {
+        float: left;
+        width: 768px;
+        border: solid 1px #ccc;
+        padding: 10px;
+        min-height: 250px;
+      }
+      .content h2 {
+        padding:0;
+        margin:0;
+      }
     </style>
   </head>
   <body>
     <div ng-controller='DemoController'>
       <h1>ngAccordionMenu Demo</h1>
-      <nav style='width:200px'>
+      <nav>
         <accordion-menu>
-          <accordion-menu-item href="{{href('step-1')}}" title='Step 1'></accordion-menu-item>
-          <accordion-menu-group title='Step 2' open='true'>
-            <accordion-menu-item href="{{href('step-2a')}}" title='Step 2A'></accordion-menu-item>
-            <accordion-menu-group title='Step 2 Extra' open='true' last='true'>
-              <accordion-menu-item href="{{href('step-2a-1')}}" title='Step 2A.1'></accordion-menu-item>
-            </accordion-menu-group>
-          </accordion-menu>
+          <accordion-menu-item href="{{href('dashboard')}}" title='Dashboard'></accordion-menu-item>
+          <accordion-menu-group title='Profile' open='true'>
+            <accordion-menu-item href="{{href('basic-info')}}" title='Basic Info'></accordion-menu-item>
+            <accordion-menu-item href="{{href('contact-addresses')}}" title='Contact Address'></accordion-menu-item>
+          </accordion-menu-group>
+          <accordion-menu-group title='Stage 1' open='true'>
+            <accordion-menu-item href="{{href('stage-1a')}}" title='Stage 1a'></accordion-menu-item>
+            <accordion-menu-item href="{{href('stage-1b')}}" title='Stage 1b'></accordion-menu-item>
           </accordion-menu-group>
         </accordion-menu>
       </nav>
-      <br/>
-      <br/>
-      <hr/>
-      <br/>
-      <br/>
       <div class='content'>
         <div ui-view></div>
       </div>
@@ -37,34 +56,25 @@
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script type="text/javascript" src="dist/ng-accordion-menu.js"></script>
     <script type="text/javascript" src="demo.js"></script>
-    <script type="text/ng-template" id="step-1.html">
-      <h2>Step 1: Introduction</h2>
-      <p>ngWizardNav is a library and set of Angular.js directives that make it easy to navigate through a wizard-like set of pages.</p>
+    <script type="text/ng-template" id="dashboard.html">
+      <h2>Dashboard</h2>
+      <p>Proin ullamcorper tempor ante, vitae. Proin ullamcorper tempor ante, vitae.</p>
     </script>
-    <script type="text/ng-template" id="step-2.html">
-      <h2>Step 2: Dependencies</h2>
-      <p>ngWizardNav has 2 dependencies:</p>
-      <ul>
-        <li><a href=''>Angular.js</a></li>
-        <li><a href=''>UI-Router</a></li>
-      </ul>
-      <p>There is more info on UI-Router in the next step.</p>
+    <script type="text/ng-template" id="basic-info.html">
+      <h2>Basic Info</h2>
+      <p>Proin ullamcorper tempor ante, vitae. Proin ullamcorper tempor ante, vitae.</p>
     </script>
-    <script type="text/ng-template" id="step-2a.html">
-      <h2>Step 2A: Overview of UI-Router</h2>
-      <p>UI-Router is a replacement for Angular's built-in routing system that makes it simpler to work with nested views. ngWizardMenu will <strong>not</strong> work without it.</p>
+    <script type="text/ng-template" id="addresses.html">
+      <h2>Contact Addresses</h2>
+      <p>Proin ullamcorper tempor ante, vitae. Proin ullamcorper tempor ante, vitae.</p>
     </script>
-    <script type="text/ng-template" id="step-2b.html">
-      <h2>Step 2B</h2>
-      <p>In velit elit, suscipit quis.</p>
+    <script type="text/ng-template" id="stage-1a.html">
+      <h2>Step 1a</h2>
+      <p>Proin ullamcorper tempor ante, vitae. Proin ullamcorper tempor ante, vitae.</p>
     </script>
-    <script type="text/ng-template" id="step-3a.html">
-      <h2>Step 3A</h2>
-      <p>In velit elit, suscipit quis.</p>
-    </script>
-    <script type="text/ng-template" id="step-3b.html">
-      <h2>Step 3B</h2>
-      <p>In velit elit, suscipit quis.</p>
+    <script type="text/ng-template" id="stage-1b.html">
+      <h2>Step 1b</h2>
+      <p>Proin ullamcorper tempor ante, vitae. Proin ullamcorper tempor ante, vitae.</p>
     </script>
   </body>
 </html>

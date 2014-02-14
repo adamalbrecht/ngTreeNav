@@ -1,5 +1,6 @@
 .accordion-menu {
   border: solid 1px #cccccc;
+  margin: 0;
   padding: 0;
 }
 .accordion-menu li {
@@ -23,6 +24,11 @@
 }
 .am-item-title:hover {
   background-color: #eeeeee;
+  border-bottom-color: #eeeeee;
+}
+.am-item-title.am-selected:hover {
+  background-color: #81c4e0;
+  border-bottom-color: #81c4e0;
 }
 .am-item-title.last .am-group span.am-item-title {
   border-bottom: none;
@@ -33,6 +39,9 @@
 .am-item-title i {
   width: 10px;
   font-size: 110%;
+}
+.am-item-title {
+  color: #333;
 }
 a.am-item-title:hover {
   text-decoration: underline;

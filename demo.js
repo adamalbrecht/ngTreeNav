@@ -3,34 +3,26 @@ app = angular.module('ngAccordionMenuDemo', ['ui.router', 'ngAccordionMenu']);
 app.config(function($stateProvider, $urlRouterProvider) {  
   $urlRouterProvider.otherwise("/step-1");
   $stateProvider
-    .state('step-1', {
-      url: '/step-1',
-      templateUrl: 'step-1.html'
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: 'dashboard.html'
     })
-    .state('step-2', {
-      url: '/step-2',
-      templateUrl: 'step-2.html'
+    .state('basic-info', {
+      url: '/basic-info',
+      templateUrl: 'basic-info.html'
     })
-    .state('step-2a', {
-      url: '/step-2a',
-      templateUrl: 'step-2a.html'
+    .state('contact-addresses', {
+      url: '/contact-addresses',
+      templateUrl: 'addresses.html'
     })
-    .state('step-2a-1', {
-      url: '/step-2a-1',
-      templateUrl: 'step-2a.html'
+    .state('stage-1a', {
+      url: '/stage-1a',
+      templateUrl: 'stage-1a.html'
     })
-    .state('step-2b', {
-      url: '/step-2b',
-      templateUrl: 'step-2b.html'
+    .state('stage-1b', {
+      url: '/stage-1b',
+      templateUrl: 'stage-1b.html'
     })
-    .state('step-3a', {
-      url: '/step-3a',
-      templateUrl: 'step-3a.html'
-    })
-    .state('step-3b', {
-      url: '/step-3b',
-      templateUrl: 'step-3b.html'
-    });
 });
 
 

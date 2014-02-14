@@ -5,6 +5,7 @@
 @item-left-padding: 40px;
 .accordion-menu {
   border: solid 1px @outside-border-color;
+  margin: 0;
   padding: 0;
 
   li {
@@ -32,6 +33,11 @@
   }
   &:hover {
     background-color: @hover-bg-color;
+    border-bottom-color: @hover-bg-color;
+  }
+  &.am-selected:hover {
+    background-color: darken(@selected-bg-color, 10%);
+    border-bottom-color: darken(@selected-bg-color, 10%);
   }
   &.last .am-group span.am-item-title {
     border-bottom: none;
@@ -44,6 +50,10 @@
     width:10px;
     font-size: 110%;
   }
+}
+
+.am-item-title {
+  color: #333;
 }
 a.am-item-title {
   &:hover {
