@@ -1,15 +1,15 @@
-# ngAccordionMenu
+# ngTreeNav
 # by Adam Albrecht
 # http://adamalbrecht.com
 #
-# Source Code: https://github.com/adamalbrecht/ngAccordionMenu
+# Source Code: https://github.com/adamalbrecht/ngTreeNav
 #
 # Compatible with Angular 1.2.x
 #
 
-module = angular.module("ngAccordionMenu", [])
+module = angular.module("ngTreeNav", [])
 
-module.provider "ngAccordionMenuDefaults", ->
+module.provider "ngTreeNavDefaults", ->
   options: {
     groupClosedIconClass: "fa fa-caret-right"
     groupOpenIconClass: "fa fa-caret-down"
@@ -25,16 +25,16 @@ module.provider "ngAccordionMenuDefaults", ->
     else
       @options[keyOrHash] = value
 
-module.directive 'accordionMenu', ->
+module.directive 'treeNav', ->
   restrict: 'E'
   replace: true
   transclude: true
   template: """
-              <ul class='accordion-menu' ng-transclude>
+              <ul class='tree-nav' ng-transclude>
               </ul>
             """
 
-module.directive 'accordionMenuGroup', ['$rootScope', '$parse', 'ngAccordionMenuDefaults', ($rootScope, $parse, ngAccordionMenuDefaults) ->
+module.directive 'treeNavGroup', ['$rootScope', '$parse', 'ngTreeNavDefaults', ($rootScope, $parse, ngTreeNavDefaults) ->
   restrict: 'E'
   replace: true
   transclude: true
@@ -49,28 +49,28 @@ module.directive 'accordionMenuGroup', ['$rootScope', '$parse', 'ngAccordionMenu
       else
         scope.closed = !scope.closed
 
-      scope.iconClass = if scope.closed then ngAccordionMenuDefaults.groupClosedIconClass else ngAccordionMenuDefaults.groupOpenIconClass
+      scope.iconClass = if scope.closed then ngTreeNavDefaults.groupClosedIconClass else ngTreeNavDefaults.groupOpenIconClass
 
     if attrs.closed?
       scope.toggle($parse(attrs.closed))
     else if attrs.open?
       scope.toggle(!$parse(attrs.open))
     else
-      scope.toggle(!ngAccordionMenuDefaults.openGroupsByDefault)
+      scope.toggle(!ngTreeNavDefaults.openGroupsByDefault)
 
   template: """
               <li ng-class='{closed: closed, last: last}' >
-                <span class='am-item-title' ng-click='toggle()'>
+                <span class='tn-item-title' ng-click='toggle()'>
                   <i class="{{iconClass}}" ></i>
                   {{title}}
                 </span>
-                <ul class='am-group' ng-transclude>
+                <ul class='tn-group' ng-transclude>
                 </ul>
               </li>
             """
 ]
 
-module.directive 'accordionMenuItem', ['$location', ($location) ->
+module.directive 'treeNavItem', ['$location', ($location) ->
   restrict: 'E'
   replace: true
   scope:
@@ -85,7 +85,7 @@ module.directive 'accordionMenuItem', ['$location', ($location) ->
     )
   template: """
               <li ng-class='{last: last}'>
-                <a class='am-item-title' ng-class="{'am-selected': selected}" href='{{href}}'>{{title}}</a>
+                <a class='tn-item-title' ng-class="{'tn-selected': selected}" href='{{href}}'>{{title}}</a>
               </li>
             """
 ]

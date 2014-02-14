@@ -7,21 +7,21 @@ module.exports = function(grunt) {
       compile: {
         files: {
           "spec/build/specs.js": ["spec/*.coffee"],
-          "dist/ng-accordion-menu.js": ["src/*.coffee"]
+          "dist/ng-tree-nav.js": ["src/*.coffee"]
         }
       }
     },
     uglify: {
       my_target: {
         files: {
-          "dist/ng-accordion-menu.min.js": "dist/ng-accordion-menu.js"
+          "dist/ng-tree-nav.min.js": "dist/ng-tree-nav.js"
         }
       }
     },
     less: {
       compile: {
         files: {
-          "dist/ng-accordion-menu.css": ["src/ng-accordion-menu.less"]
+          "dist/ng-tree-nav.css": ["src/ng-tree-nav.less"]
         }
       }
     },
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       'package': {
         cwd: 'dist/',
         src: ['dist/*.js', 'dist/*.css'],
-        dest: 'dist/ng-accordion-menu.zip'
+        dest: 'dist/ng-tree-nav.zip'
       }
     }
   });

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html data-ng-app='ngAccordionMenuDemo'>
+<html data-ng-app='ngTreeNavDemo'>
   <head>
-    <title>ngAccordionMenu Demo</title>
+    <title>ngTreeNav Demo</title>
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="dist/ng-accordion-menu.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="dist/ng-tree-nav.css" media="all" />
     <style type='text/css'>
       body{
         font-family:'Helvetica Neue',Helvetica,sans-serif;
@@ -33,19 +33,19 @@
   </head>
   <body>
     <div ng-controller='DemoController'>
-      <h1>ngAccordionMenu Demo</h1>
+      <h1>ngTreeNav Demo</h1>
       <nav>
-        <accordion-menu>
-          <accordion-menu-item href="{{href('dashboard')}}" title='Dashboard'></accordion-menu-item>
-          <accordion-menu-group title='Profile'>
-            <accordion-menu-item href="{{href('basic-info')}}" title='Basic Info'></accordion-menu-item>
-            <accordion-menu-item href="{{href('contact-addresses')}}" title='Contact Address'></accordion-menu-item>
-          </accordion-menu-group>
-          <accordion-menu-group title='Stage 1' closed='true'>
-            <accordion-menu-item href="{{href('stage-1a')}}" title='Stage 1a'></accordion-menu-item>
-            <accordion-menu-item href="{{href('stage-1b')}}" title='Stage 1b'></accordion-menu-item>
-          </accordion-menu-group>
-        </accordion-menu>
+        <tree-nav>
+          <tree-nav-item href="{{href('dashboard')}}" title='Dashboard'></tree-nav-item>
+          <tree-nav-group title='Profile'>
+            <tree-nav-item href="{{href('basic-info')}}" title='Basic Info'></tree-nav-item>
+            <tree-nav-item href="{{href('contact-addresses')}}" title='Contact Address'></tree-nav-item>
+          </tree-nav-group>
+          <tree-nav-group title='Stage 1' closed='true'>
+            <tree-nav-item href="{{href('stage-1a')}}" title='Stage 1a'></tree-nav-item>
+            <tree-nav-item href="{{href('stage-1b')}}" title='Stage 1b'></tree-nav-item>
+          </tree-nav-group>
+        </tree-nav>
       </nav>
       <div class='content'>
         <div ui-view></div>
@@ -54,7 +54,7 @@
     <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script type="text/javascript" src="dist/ng-accordion-menu.js"></script>
+    <script type="text/javascript" src="dist/ng-tree-nav.js"></script>
     <script type="text/javascript" src="demo.js"></script>
     <script type="text/ng-template" id="dashboard.html">
       <h2>Dashboard</h2>

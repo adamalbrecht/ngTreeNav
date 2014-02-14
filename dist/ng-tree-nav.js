@@ -1,9 +1,9 @@
 (function() {
   var module;
 
-  module = angular.module("ngAccordionMenu", []);
+  module = angular.module("ngTreeNav", []);
 
-  module.provider("ngAccordionMenuDefaults", function() {
+  module.provider("ngTreeNavDefaults", function() {
     return {
       options: {
         groupClosedIconClass: "fa fa-caret-right",
@@ -29,17 +29,17 @@
     };
   });
 
-  module.directive('accordionMenu', function() {
+  module.directive('treeNav', function() {
     return {
       restrict: 'E',
       replace: true,
       transclude: true,
-      template: "<ul class='accordion-menu' ng-transclude>\n</ul>"
+      template: "<ul class='tree-nav' ng-transclude>\n</ul>"
     };
   });
 
-  module.directive('accordionMenuGroup', [
-    '$rootScope', '$parse', 'ngAccordionMenuDefaults', function($rootScope, $parse, ngAccordionMenuDefaults) {
+  module.directive('treeNavGroup', [
+    '$rootScope', '$parse', 'ngTreeNavDefaults', function($rootScope, $parse, ngTreeNavDefaults) {
       return {
         restrict: 'E',
         replace: true,
@@ -56,22 +56,22 @@
             } else {
               scope.closed = !scope.closed;
             }
-            return scope.iconClass = scope.closed ? ngAccordionMenuDefaults.groupClosedIconClass : ngAccordionMenuDefaults.groupOpenIconClass;
+            return scope.iconClass = scope.closed ? ngTreeNavDefaults.groupClosedIconClass : ngTreeNavDefaults.groupOpenIconClass;
           };
           if (attrs.closed != null) {
             return scope.toggle($parse(attrs.closed));
           } else if (attrs.open != null) {
             return scope.toggle(!$parse(attrs.open));
           } else {
-            return scope.toggle(!ngAccordionMenuDefaults.openGroupsByDefault);
+            return scope.toggle(!ngTreeNavDefaults.openGroupsByDefault);
           }
         },
-        template: "<li ng-class='{closed: closed, last: last}' >\n  <span class='am-item-title' ng-click='toggle()'>\n    <i class=\"{{iconClass}}\" ></i>\n    {{title}}\n  </span>\n  <ul class='am-group' ng-transclude>\n  </ul>\n</li>"
+        template: "<li ng-class='{closed: closed, last: last}' >\n  <span class='tn-item-title' ng-click='toggle()'>\n    <i class=\"{{iconClass}}\" ></i>\n    {{title}}\n  </span>\n  <ul class='tn-group' ng-transclude>\n  </ul>\n</li>"
       };
     }
   ]);
 
-  module.directive('accordionMenuItem', [
+  module.directive('treeNavItem', [
     '$location', function($location) {
       return {
         restrict: 'E',
@@ -91,7 +91,7 @@
             return scope.selected = scope.href && (("#" + newPath) === scope.href);
           });
         },
-        template: "<li ng-class='{last: last}'>\n  <a class='am-item-title' ng-class=\"{'am-selected': selected}\" href='{{href}}'>{{title}}</a>\n</li>"
+        template: "<li ng-class='{last: last}'>\n  <a class='tn-item-title' ng-class=\"{'tn-selected': selected}\" href='{{href}}'>{{title}}</a>\n</li>"
       };
     }
   ]);

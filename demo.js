@@ -1,4 +1,4 @@
-app = angular.module('ngAccordionMenuDemo', ['ui.router', 'ngAccordionMenu']);
+app = angular.module('ngTreeNavDemo', ['ui.router', 'ngTreeNav']);
 
 app.config(function($stateProvider, $urlRouterProvider) {  
   $urlRouterProvider.otherwise("/step-1");
@@ -24,8 +24,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'stage-1b.html'
     })
 });
-app.config(function(ngAccordionMenuDefaultsProvider) {
-  return ngAccordionMenuDefaultsProvider.set({
+app.config(function(ngTreeNavDefaultsProvider) {
+  return ngTreeNavDefaultsProvider.set({
     openGroupsByDefault: true
   });
 });

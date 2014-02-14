@@ -1,7 +1,7 @@
 {
-  "name": "ngAccordionMenu",
+  "name": "ngTreeNav",
   "version": "0.0.1",
-  "main": ["dist/ng-accordion-menu.js", "dist/ng-accordion-menu.css"],
+  "main": ["dist/ng-tree-nav.js", "dist/ng-tree-nav.css"],
   "ignore": [
     ".gitignore",
     "bower_components",
