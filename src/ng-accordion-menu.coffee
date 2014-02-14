@@ -9,18 +9,32 @@
 
 module = angular.module("ngAccordionMenu", [])
 
+module.provider "ngAccordionMenuDefaults", ->
+  options: {
+    groupClosedIconClass: "fa fa-caret-right"
+    groupOpenIconClass: "fa fa-caret-down"
+    openGroupsByDefault: true
+  }
+  $get: ->
+    @options
+
+  set: (keyOrHash, value) ->
+    if typeof(keyOrHash) == 'object'
+      for k, v of keyOrHash
+        @options[k] = v
+    else
+      @options[keyOrHash] = value
+
 module.directive 'accordionMenu', ->
   restrict: 'E'
   replace: true
   transclude: true
-  link: (scope, element, attrs) ->
-
   template: """
               <ul class='accordion-menu' ng-transclude>
               </ul>
             """
 
-module.directive 'accordionMenuGroup', ['$rootScope', ($rootScope) ->
+module.directive 'accordionMenuGroup', ['$rootScope', '$parse', 'ngAccordionMenuDefaults', ($rootScope, $parse, ngAccordionMenuDefaults) ->
   restrict: 'E'
   replace: true
   transclude: true
@@ -29,14 +43,25 @@ module.directive 'accordionMenuGroup', ['$rootScope', ($rootScope) ->
     href: '@'
     last: '@'
   link: (scope, element, attrs) ->
-    scope.closed = false
-    scope.toggle = (e) ->
-      console.log("e:", e)
-      scope.closed = !scope.closed
+    scope.toggle = (forcedValue) ->
+      if forcedValue?
+        scope.closed = forcedValue
+      else
+        scope.closed = !scope.closed
+
+      scope.iconClass = if scope.closed then ngAccordionMenuDefaults.groupClosedIconClass else ngAccordionMenuDefaults.groupOpenIconClass
+
+    if attrs.closed?
+      scope.toggle($parse(attrs.closed))
+    else if attrs.open?
+      scope.toggle(!$parse(attrs.open))
+    else
+      scope.toggle(!ngAccordionMenuDefaults.openGroupsByDefault)
+
   template: """
               <li ng-class='{closed: closed, last: last}' >
                 <span class='am-item-title' ng-click='toggle()'>
-                  <i class='fa' ng-class="{'fa-caret-right': closed, 'fa-caret-down': !closed}" ></i>
+                  <i class="{{iconClass}}" ></i>
                   {{title}}
                 </span>
                 <ul class='am-group' ng-transclude>

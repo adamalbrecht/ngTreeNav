@@ -3,18 +3,43 @@
 
   module = angular.module("ngAccordionMenu", []);
 
+  module.provider("ngAccordionMenuDefaults", function() {
+    return {
+      options: {
+        groupClosedIconClass: "fa fa-caret-right",
+        groupOpenIconClass: "fa fa-caret-down",
+        openGroupsByDefault: true
+      },
+      $get: function() {
+        return this.options;
+      },
+      set: function(keyOrHash, value) {
+        var k, v, _results;
+        if (typeof keyOrHash === 'object') {
+          _results = [];
+          for (k in keyOrHash) {
+            v = keyOrHash[k];
+            _results.push(this.options[k] = v);
+          }
+          return _results;
+        } else {
+          return this.options[keyOrHash] = value;
+        }
+      }
+    };
+  });
+
   module.directive('accordionMenu', function() {
     return {
       restrict: 'E',
       replace: true,
       transclude: true,
-      link: function(scope, element, attrs) {},
       template: "<ul class='accordion-menu' ng-transclude>\n</ul>"
     };
   });
 
   module.directive('accordionMenuGroup', [
-    '$rootScope', function($rootScope) {
+    '$rootScope', '$parse', 'ngAccordionMenuDefaults', function($rootScope, $parse, ngAccordionMenuDefaults) {
       return {
         restrict: 'E',
         replace: true,
@@ -25,13 +50,23 @@
           last: '@'
         },
         link: function(scope, element, attrs) {
-          scope.closed = false;
-          return scope.toggle = function(e) {
-            console.log("e:", e);
-            return scope.closed = !scope.closed;
+          scope.toggle = function(forcedValue) {
+            if (forcedValue != null) {
+              scope.closed = forcedValue;
+            } else {
+              scope.closed = !scope.closed;
+            }
+            return scope.iconClass = scope.closed ? ngAccordionMenuDefaults.groupClosedIconClass : ngAccordionMenuDefaults.groupOpenIconClass;
           };
+          if (attrs.closed != null) {
+            return scope.toggle($parse(attrs.closed));
+          } else if (attrs.open != null) {
+            return scope.toggle(!$parse(attrs.open));
+          } else {
+            return scope.toggle(!ngAccordionMenuDefaults.openGroupsByDefault);
+          }
         },
-        template: "<li ng-class='{closed: closed, last: last}' >\n  <span class='am-item-title' ng-click='toggle()'>\n    <i class='fa' ng-class=\"{'fa-caret-right': closed, 'fa-caret-down': !closed}\" ></i>\n    {{title}}\n  </span>\n  <ul class='am-group' ng-transclude>\n  </ul>\n</li>"
+        template: "<li ng-class='{closed: closed, last: last}' >\n  <span class='am-item-title' ng-click='toggle()'>\n    <i class=\"{{iconClass}}\" ></i>\n    {{title}}\n  </span>\n  <ul class='am-group' ng-transclude>\n  </ul>\n</li>"
       };
     }
   ]);

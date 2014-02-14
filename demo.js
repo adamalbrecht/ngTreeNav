@@ -24,7 +24,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'stage-1b.html'
     })
 });
-
+app.config(function(ngAccordionMenuDefaultsProvider) {
+  return ngAccordionMenuDefaultsProvider.set({
+    openGroupsByDefault: true
+  });
+});
 
 app.controller('DemoController', function($scope, $state) {
   $scope.href = $state.href
