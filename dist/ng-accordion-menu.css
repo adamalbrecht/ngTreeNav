@@ -1,0 +1,57 @@
+.accordion-menu {
+  border: solid 1px #cccccc;
+  padding: 0;
+}
+.accordion-menu li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.accordion-menu li.closed ul {
+  display: none;
+}
+.am-item-title {
+  display: block;
+  border-bottom: solid 1px #eeeeee;
+  padding: 7px 0 7px 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.am-item-title.am-selected {
+  background-color: #aad7ea;
+  border-bottom-color: #aad7ea;
+}
+.am-item-title:hover {
+  background-color: #eeeeee;
+}
+.am-item-title.last .am-group span.am-item-title {
+  border-bottom: none;
+}
+.am-item-title.last.closed span.am-item-title {
+  border-bottom: none;
+}
+.am-item-title i {
+  width: 10px;
+  font-size: 110%;
+}
+a.am-item-title:hover {
+  text-decoration: underline;
+}
+a.am-item-title:visited {
+  color: inherit;
+}
+ul.am-group {
+  padding: 0;
+}
+ul.am-group > li > .am-item-title {
+  padding-left: 40px;
+}
+ul.am-group > li > ul.am-group > li > .am-item-title {
+  padding-left: 80px;
+}
+ul.am-group > li > ul.am-group > li > ul.am-group > li > .am-item-title {
+  padding-left: 120px;
+}
+ul.am-group > li > ul.am-group > li > ul.am-group > li > ul.am-group > li > .am-item-title {
+  padding-left: 160px;
+}
