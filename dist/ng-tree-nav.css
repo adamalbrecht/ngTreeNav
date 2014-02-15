@@ -2,6 +2,7 @@
   border: solid 1px #cccccc;
   margin: 0;
   padding: 0;
+  background-color: #fff;
 }
 .tree-nav li {
   padding: 0;
@@ -36,7 +37,7 @@
 .tn-item-title.last.closed span.tn-item-title {
   border-bottom: none;
 }
-.tn-item-title i {
+.tn-item-title > i {
   width: 10px;
   font-size: 110%;
 }
@@ -50,6 +51,7 @@ a.tn-item-title:visited {
   color: inherit;
 }
 ul.tn-group {
+  margin: 0;
   padding: 0;
 }
 ul.tn-group > li > .tn-item-title {

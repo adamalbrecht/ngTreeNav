@@ -81,7 +81,10 @@ module.directive 'treeNavItem', ['$location', ($location) ->
     scope.selected = false
     getPath = -> $location.path()
     scope.$watch(getPath, (newPath) ->
-      scope.selected = scope.href && ("##{newPath}" == scope.href)
+      if (scope.href && ("##{newPath}" == scope.href)) or (attrs.pattern? && (newPath.match(attrs.pattern)))
+        scope.selected = true
+      else
+        scope.selected = false
     )
   template: """
               <li ng-class='{last: last}'>

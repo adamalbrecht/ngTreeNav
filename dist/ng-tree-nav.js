@@ -88,7 +88,11 @@
             return $location.path();
           };
           return scope.$watch(getPath, function(newPath) {
-            return scope.selected = scope.href && (("#" + newPath) === scope.href);
+            if ((scope.href && (("#" + newPath) === scope.href)) || ((attrs.pattern != null) && (newPath.match(attrs.pattern)))) {
+              return scope.selected = true;
+            } else {
+              return scope.selected = false;
+            }
           });
         },
         template: "<li ng-class='{last: last}'>\n  <a class='tn-item-title' ng-class=\"{'tn-selected': selected}\" href='{{href}}'>{{title}}</a>\n</li>"
