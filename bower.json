@@ -1,6 +1,6 @@
 {
   "name": "ngTreeNav",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": ["dist/ng-tree-nav.js", "dist/ng-tree-nav.css"],
   "ignore": [
     ".gitignore",

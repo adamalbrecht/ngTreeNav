@@ -1,7 +1,7 @@
 app = angular.module('ngTreeNavDemo', ['ui.router', 'ngTreeNav']);
 
 app.config(function($stateProvider, $urlRouterProvider) {  
-  $urlRouterProvider.otherwise("/step-1");
+  $urlRouterProvider.otherwise("/dashboard");
   $stateProvider
     .state('dashboard', {
       url: '/dashboard',
